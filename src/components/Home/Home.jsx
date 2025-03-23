@@ -108,7 +108,7 @@ const Home = ({ onAnimationComplete }) => {
             </p>
             <div className="flex justify-center space-x-6 mb-8">
               <a 
-                href="https://github.com/yourusername" 
+                href="https://github.com/Ex-Rockstar" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-primary-taupe hover:text-primary-dark transition-colors duration-300 transform hover:scale-110"
@@ -116,7 +116,7 @@ const Home = ({ onAnimationComplete }) => {
                 <FaGithub className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
               </a>
               <a 
-                href="https://linkedin.com/in/yourusername" 
+                href="https://linkedin.com/in/ruthi-shankari" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-primary-taupe hover:text-primary-dark transition-colors duration-300 transform hover:scale-110"

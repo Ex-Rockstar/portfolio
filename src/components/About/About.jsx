@@ -239,27 +239,6 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-white rounded-lg shadow-lg p-8 border border-primary-beige">
-              <h3 className="text-2xl font-semibold text-primary-dark mb-6">Skills</h3>
-              <div className="space-y-4">
-                {skills.programming.skills.map((skill, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between mb-1">
-                      <span className="text-primary-dark">{skill.name}</span>
-                      <span className="text-primary-taupe">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-primary-white rounded-full h-2">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: index * 0.1 }}
-                        className="bg-gradient-to-r from-primary-burgundy to-primary-taupe h-2 rounded-full"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </motion.div>
 
           {/* Right Column - Interests and Education */}

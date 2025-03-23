@@ -122,18 +122,15 @@ const Contact = () => {
             <div className="contact-info pt-6 sm:pt-8">
               <h3 className="text-lg sm:text-xl font-heading2 text-primary-dark mb-4">Connect with Me</h3>
               <div className="flex gap-3 sm:gap-4">
-                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" 
+                <a href="https://www.linkedin.com/in/ruthi-shankari/" target="_blank" rel="noopener noreferrer" 
                    className="p-2 sm:p-3 bg-primary-beige rounded-lg hover:bg-primary-burgundy transition-colors duration-300 group">
                   <FaLinkedin className="text-xl sm:text-2xl text-primary-burgundy group-hover:text-primary-white" />
                 </a>
-                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer"
+                <a href="https://github.com/Ex-Rockstar" target="_blank" rel="noopener noreferrer"
                    className="p-2 sm:p-3 bg-primary-beige rounded-lg hover:bg-primary-burgundy transition-colors duration-300 group">
                   <FaGithub className="text-xl sm:text-2xl text-primary-burgundy group-hover:text-primary-white" />
                 </a>
-                <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer"
-                   className="p-2 sm:p-3 bg-primary-beige rounded-lg hover:bg-primary-burgundy transition-colors duration-300 group">
-                  <FaTwitter className="text-xl sm:text-2xl text-primary-burgundy group-hover:text-primary-white" />
-                </a>
+               
               </div>
             </div>
           </div>
