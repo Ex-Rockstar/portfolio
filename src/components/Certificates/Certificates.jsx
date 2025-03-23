@@ -87,15 +87,7 @@ const Certificates = () => {
       icon: <FaBrain className="w-6 h-6" />,
       category: "AI/ML"
     },
-    {
-      title: "AI Aware Badge - AI For All",
-      issuer: "CBSE and Intel",
-      date: "Apr 2024",
-      credentialId: "U2FsdGVkX184GTsFJ9ivRQs1L2a3S4hwixe6XePPBQBmoi46ZBxmXrb3SLNYoDYwTgvUUqis",
-      description: "Comprehensive understanding of AI fundamentals and applications",
-      icon: <FaBrain className="w-6 h-6" />,
-      category: "AI/ML"
-    },
+    
     {
       title: "Introduction to Data Science",
       issuer: "Cisco",

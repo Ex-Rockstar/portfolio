@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { FaTrophy, FaMedal, FaAward, FaCertificate } from 'react-icons/fa';
+import { FaCertificate, FaStar, FaAward, FaMedal, FaTrophy } from 'react-icons/fa';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -10,32 +10,44 @@ const Award = () => {
 
   const awards = [
     {
-      icon: <FaTrophy className="text-2xl sm:text-3xl md:text-4xl text-primary-burgundy" />,
-      title: "Best Research Paper Award",
-      organization: "IEEE International Conference",
-      year: "2023",
-      description: "Awarded for groundbreaking research in AI-driven healthcare solutions."
+      icon: <FaCertificate className="text-2xl sm:text-3xl md:text-4xl text-primary-burgundy" />,
+      title: "NPTEL Believer",
+      organization: "NPTEL",
+      date: "Dec 2024",
+      institution: "Sri Sairam Engineering College",
+      description: "Completed 5 courses in a semester with course hours exceeding 50"
     },
     {
-      icon: <FaMedal className="text-2xl sm:text-3xl md:text-4xl text-primary-burgundy" />,
-      title: "Innovation Excellence",
-      organization: "Global Tech Summit",
-      year: "2023",
-      description: "Recognized for innovative contributions to mental health technology."
+      icon: <FaStar className="text-2xl sm:text-3xl md:text-4xl text-primary-burgundy" />,
+      title: "NPTEL Discipline Star",
+      organization: "NPTEL",
+      date: "Dec 2024",
+      institution: "Sri Sairam Engineering College",
+      description: "Recognized for outstanding discipline and commitment to learning"
     },
     {
       icon: <FaAward className="text-2xl sm:text-3xl md:text-4xl text-primary-burgundy" />,
-      title: "Outstanding Student Researcher",
-      organization: "Sri Sairam Engineering College",
-      year: "2022",
-      description: "Awarded for exceptional research work in machine learning applications."
+      title: "NPTEL Motivated Learner",
+      organization: "NPTEL",
+      date: "Dec 2024",
+      institution: "Sri Sairam Engineering College",
+      description: "Acknowledged for exceptional motivation and dedication to learning"
     },
     {
-      icon: <FaCertificate className="text-2xl sm:text-3xl md:text-4xl text-primary-burgundy" />,
-      title: "Academic Excellence Award",
-      organization: "Department of Computer Engineering",
-      year: "2022",
-      description: "Achieved highest academic performance in the department."
+      icon: <FaMedal className="text-2xl sm:text-3xl md:text-4xl text-primary-burgundy" />,
+      title: "Star of UBA",
+      organization: "Unnath Bharat Abiyan",
+      date: "Nov 2024",
+      institution: "Sri Sairam Engineering College",
+      description: "Best outgoing student of the elite UBA Forum for dedication in the digital world of UBA"
+    },
+    {
+      icon: <FaTrophy className="text-2xl sm:text-3xl md:text-4xl text-primary-burgundy" />,
+      title: "Thiruvalluvar Award - Head Volunteer",
+      organization: "Sri Sairam Engineering College",
+      date: "Nov 2023",
+      institution: "Atal Innovation Mission Official",
+      description: "Awarded for heading a huge team of 400+ students in a village survey"
     }
   ];
 
@@ -66,10 +78,10 @@ const Award = () => {
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
         <div className="text-center mb-10 sm:mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading1 text-primary-dark mb-3 sm:mb-4">
-            Awards & Achievements
+            Honors & Awards
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-primary-taupe max-w-2xl mx-auto px-4">
-            Recognition for excellence in research, innovation, and academic achievements.
+            Recognition for academic excellence, leadership, and contributions to various initiatives.
           </p>
         </div>
         
@@ -90,7 +102,10 @@ const Award = () => {
                   <div className="flex flex-wrap items-center gap-2 text-primary-taupe mb-2 sm:mb-3">
                     <span className="font-medium text-sm sm:text-base">{award.organization}</span>
                     <span className="text-primary-burgundy hidden sm:inline">•</span>
-                    <span className="text-sm sm:text-base">{award.year}</span>
+                    <span className="text-sm sm:text-base">{award.date}</span>
+                  </div>
+                  <div className="text-sm sm:text-base text-primary-taupe mb-2">
+                    {award.institution}
                   </div>
                   <p className="text-primary-taupe text-sm sm:text-base line-clamp-3">
                     {award.description}
