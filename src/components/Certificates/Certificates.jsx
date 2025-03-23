@@ -8,7 +8,7 @@ const Certificates = () => {
       title: "Generative AI",
       issuer: "GUVI Geek Networks, IITM Research Park",
       date: "Mar 2025",
-      credentialId: "751oY41D8HN74115hU",
+
       description: "Comprehensive course on Generative AI technologies and applications",
       icon: <FaBrain className="w-6 h-6" />,
       category: "AI/ML",
@@ -18,7 +18,7 @@ const Certificates = () => {
       title: "HTML & CSS",
       issuer: "GUVI Geek Networks, IITM Research Park",
       date: "Mar 2025",
-      credentialId: "C97JR20G4aw114W381",
+
       description: "Advanced web development with HTML5, CSS, and Bootstrap",
       icon: <FaCode className="w-6 h-6" />,
       category: "Web Development",
@@ -28,7 +28,7 @@ const Certificates = () => {
       title: "Machine Learning 101",
       issuer: "GUVI Geek Networks, IITM Research Park",
       date: "Mar 2025",
-      credentialId: "w1c477JTuz7j14R162",
+
       description: "Fundamentals of machine learning algorithms and applications",
       icon: <FaBrain className="w-6 h-6" />,
       category: "AI/ML",
@@ -73,7 +73,7 @@ const Certificates = () => {
       title: "Digital Marketing",
       issuer: "HubSpot Academy",
       date: "Jul 2024",
-      credentialId: "0989c060e2854a3c846761519d7441b5",
+
       description: "Comprehensive digital marketing strategies and tools",
       icon: <FaBullhorn className="w-6 h-6" />,
       category: "Marketing",
@@ -109,7 +109,7 @@ const Certificates = () => {
       title: "Google Cloud Computing Foundations",
       issuer: "Google",
       date: "Oct 2023",
-      credentialId: "5450516",
+      
       description: "Fundamentals of cloud computing and Google Cloud Platform",
       icon: <FaCloud className="w-6 h-6" />,
       category: "Cloud Computing",
@@ -119,7 +119,7 @@ const Certificates = () => {
       title: "Level 3: GenAI",
       issuer: "Google",
       date: "Sep 2023",
-      credentialId: "5393170",
+      
       description: "Advanced generative AI concepts and applications",
       icon: <FaBrain className="w-6 h-6" />,
       category: "AI/ML"
@@ -128,7 +128,7 @@ const Certificates = () => {
       title: "MongoDB Basics",
       issuer: "MongoDB",
       date: "Aug 2023",
-      credentialId: "MDBhck92es3f8",
+      
       description: "Fundamentals of MongoDB database management",
       icon: <FaServer className="w-6 h-6" />,
       category: "Database",
@@ -138,7 +138,7 @@ const Certificates = () => {
       title: "Python Basics for Data Science",
       issuer: "edX",
       date: "Jan 2022",
-      credentialId: "ae7505793e26481f9a7500acf1d52ce7",
+      
       description: "Python programming fundamentals for data science applications",
       icon: <FaCode className="w-6 h-6" />,
       category: "Programming"
