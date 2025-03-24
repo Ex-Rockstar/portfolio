@@ -70,9 +70,13 @@ const Home = ({ onAnimationComplete }) => {
     }
   }, [showContent]);
 
-  const handleMoreAboutMe = () => {
+  const scrollToAbout = () => {
     const aboutSection = document.getElementById('about');
-    aboutSection?.scrollIntoView({ behavior: 'smooth' });
+    if (aboutSection) {
+      const yOffset = -80; // Offset to account for fixed header
+      const y = aboutSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -134,7 +138,7 @@ const Home = ({ onAnimationComplete }) => {
             </div>
             <button
               ref={buttonRef}
-              onClick={handleMoreAboutMe}
+              onClick={scrollToAbout}
               className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-dark to-primary-burgundy text-primary-white rounded-lg text-lg sm:text-xl font-body hover:from-primary-burgundy hover:to-primary-taupe transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-xl"
             >
               Explore My Journey
