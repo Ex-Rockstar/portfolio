@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
+import Projects from "./components/Projects/Projects";
 import Experience from "./components/Experience/Experience";
+import Skills from "./components/Skills/Skills";
 import Certificates from "./components/Certificates/Certificates";
 import Award from "./components/Award/Award";
 import Contact from "./components/Contact/Contact";
+
 import "./index.css";
 
 const App = () => {
@@ -16,26 +19,23 @@ const App = () => {
   };
 
   return (
-    <div className="bg-primary-white">
+    <div className="min-h-screen bg-primary-white">
       {showHeader && <Header />}
       <main>
         <Home onAnimationComplete={handleAnimationComplete} />
-        <section id="about">
-          <About />
-        </section>
-        <section id="experience">
-          <Experience />
-        </section>
+        <About />
+        <Projects />
+        <Experience />
+      
         <section id="certificates">
           <Certificates />
         </section>
         <section id="awards">
           <Award />
         </section>
-        <section id="contact">
-          <Contact />
-        </section>
+        <Contact />
       </main>
+      {/* <Footer /> */}
     </div>
   );
 };

@@ -17,7 +17,8 @@ const Experience = () => {
       type: "Full-time",
       description: "Active member of the prestigious IEEE honor society",
       icon: <FaGraduationCap className="w-6 h-6" />,
-      category: "Professional Organization"
+      category: "Professional Organization",
+      logo: "../../assets/images/hkn.webp"
     },
     {
       title: "Summer AI Intern",
@@ -28,7 +29,8 @@ const Experience = () => {
       description: "Working on AI and machine learning projects",
       skills: ["LLaMA", "Python", "RAG", "Streamlit"],
       icon: <FaBrain className="w-6 h-6" />,
-      category: "AI/ML"
+      category: "AI/ML",
+      logo: "/src/assets/images/vajra-logo.png"
     },
     {
       title: "Web Developer",
@@ -39,7 +41,8 @@ const Experience = () => {
       description: "Leading web development initiatives and content management",
       skills: ["React.js", "JavaScript", "Web Development", "Leadership", "Media Management"],
       icon: <FaCode className="w-6 h-6" />,
-      category: "Web Development"
+      category: "Web Development",
+      logo: "/src/assets/images/uba-logo.png"
     },
     {
       title: "Manak mitra",
@@ -50,7 +53,8 @@ const Experience = () => {
       description: "Contributing to standardization initiatives",
       skills: ["Problem Solving", "Microsoft Word"],
       icon: <FaFlag className="w-6 h-6" />,
-      category: "Standards"
+      category: "Standards",
+      logo: "/src/assets/images/bis-logo.png"
     },
     {
       title: "Campus Ambassador - Influencer",
@@ -60,7 +64,8 @@ const Experience = () => {
       description: "Promoting innovation and entrepreneurship on campus",
       skills: ["Problem Solving", "Microsoft Word"],
       icon: <FaUsers className="w-6 h-6" />,
-      category: "Leadership"
+      category: "Leadership",
+      logo: "/src/assets/images/aim-logo.png"
     },
     {
       title: "Campus Ambassador",
@@ -71,7 +76,8 @@ const Experience = () => {
       description: "Spreading awareness about government policies and initiatives",
       skills: ["Public Speaking", "Community Engagement", "Management", "Leadership"],
       icon: <FaUsers className="w-6 h-6" />,
-      category: "Leadership"
+      category: "Leadership",
+      logo: "/src/assets/images/mygov-logo.png"
     },
     {
       title: "Treasurer",
@@ -82,7 +88,8 @@ const Experience = () => {
       description: "Managing financial operations for IEEE chapter",
       skills: ["Problem Solving", "Microsoft Word", "Calendars"],
       icon: <FaGraduationCap className="w-6 h-6" />,
-      category: "Professional Organization"
+      category: "Professional Organization",
+      logo: "/src/assets/images/ieee-logo.png"
     },
     {
       title: "Designer",
@@ -93,7 +100,8 @@ const Experience = () => {
       description: "Designing posters and managing social media content for UBA",
       skills: ["Canva", "Social Media Marketing", "Content Creation", "Print Design"],
       icon: <FaGlobe className="w-6 h-6" />,
-      category: "Design"
+      category: "Design",
+      logo: "/src/assets/images/uba-logo.png"
     },
     {
       title: "Webmaster",
@@ -103,7 +111,8 @@ const Experience = () => {
       description: "Managing IEEE chapter website and digital presence",
       skills: ["WordPress", "Social Media Management", "JavaScript", "HTML"],
       icon: <FaCode className="w-6 h-6" />,
-      category: "Web Development"
+      category: "Web Development",
+      logo: "/src/assets/images/ieee-logo.png"
     },
     {
       title: "Director",
@@ -113,7 +122,8 @@ const Experience = () => {
       description: "Founding member managing digital content and social media",
       skills: ["Social Media Marketing", "Content Creation", "Logo Design", "Public Speaking"],
       icon: <FaUsers className="w-6 h-6" />,
-      category: "Leadership"
+      category: "Leadership",
+      logo: "/src/assets/images/seyal-logo.png"
     },
     {
       title: "Student Intern",
@@ -124,7 +134,8 @@ const Experience = () => {
       description: "Full-stack development and web design",
       skills: ["Python", "Django", "Flutter", "Web Development", "SQL"],
       icon: <FaCode className="w-6 h-6" />,
-      category: "Web Development"
+      category: "Web Development",
+      logo: "/src/assets/images/vajra-logo.png"
     }
   ];
 
@@ -136,13 +147,16 @@ const Experience = () => {
         gsap.from(card, {
           scrollTrigger: {
             trigger: card,
-            start: "top bottom-=100",
-            toggleActions: "play none none reverse"
+            start: "top bottom-=50",
+            toggleActions: "play none none reverse",
+            fastScrollEnd: true,
+            anticipatePin: 1
           },
           opacity: 0,
-          y: 50,
-          duration: 0.8,
-          delay: index * 0.2
+          y: 30,
+          duration: 0.5,
+          delay: index * 0.1,
+          ease: "power2.out"
         });
       });
     }, experienceRef);
@@ -177,7 +191,15 @@ const Experience = () => {
                 <div className="flex items-start gap-4">
                   <div className="p-3 bg-primary-beige rounded-lg flex-shrink-0">
                     {exp.logo ? (
-                      <img src={exp.logo} alt={`${exp.company} logo`} className="w-8 h-8 object-contain" />
+                      <img 
+                        src={exp.logo} 
+                        alt={`${exp.company} logo`} 
+                        className="w-8 h-8 object-contain"
+                        onError={(e) => {
+                          e.target.onerror = null; // Prevent infinite loop
+                          e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIGZpbGw9IiNFMkUyRTIiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI0FBQUFBQSIgZm9udC1zaXplPSIxMiI+TG9nbzwvdGV4dD48L3N2Zz4=';
+                        }}
+                      />
                     ) : (
                       exp.icon
                     )}
@@ -221,7 +243,15 @@ const Experience = () => {
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary-beige rounded-lg flex-shrink-0">
                   {exp.logo ? (
-                    <img src={exp.logo} alt={`${exp.company} logo`} className="w-8 h-8 object-contain" />
+                    <img 
+                      src={exp.logo} 
+                      alt={`${exp.company} logo`} 
+                      className="w-8 h-8 object-contain"
+                      onError={(e) => {
+                        e.target.onerror = null; // Prevent infinite loop
+                        e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIGZpbGw9IiNFMkUyRTIiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI0FBQUFBQSIgZm9udC1zaXplPSIxMiI+TG9nbzwvdGV4dD48L3N2Zz4=';
+                      }}
+                    />
                   ) : (
                     exp.icon
                   )}
