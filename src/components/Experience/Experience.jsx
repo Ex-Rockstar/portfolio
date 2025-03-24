@@ -1,8 +1,13 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
 import { FaBriefcase, FaCode, FaLaptopCode, FaServer, FaMobileAlt, FaGlobe, FaBrain, FaGamepad, FaUsers, FaGraduationCap, FaFlag } from 'react-icons/fa';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Experience = () => {
+  const experienceRef = useRef(null);
+
   const experiences = [
     {
       title: "Student Member",
@@ -15,6 +20,17 @@ const Experience = () => {
       category: "Professional Organization"
     },
     {
+      title: "Summer AI Intern",
+      company: "Vajra Global Consulting Services LLP",
+      period: "Jun 2024 - Aug 2024",
+      location: "Chennai, Tamil Nadu, India · On-site",
+      type: "Internship",
+      description: "Working on AI and machine learning projects",
+      skills: ["LLaMA", "Python", "RAG", "Streamlit"],
+      icon: <FaBrain className="w-6 h-6" />,
+      category: "AI/ML"
+    },
+    {
       title: "Web Developer",
       company: "Unnat Bharat Abhiyan",
       period: "Feb 2024 - Present",
@@ -24,17 +40,6 @@ const Experience = () => {
       skills: ["React.js", "JavaScript", "Web Development", "Leadership", "Media Management"],
       icon: <FaCode className="w-6 h-6" />,
       category: "Web Development"
-    },
-    {
-      title: "Designer",
-      company: "Unnat Bharat Abhiyan",
-      period: "Dec 2022 - Feb 2024",
-      location: "Chennai, Tamil Nadu, India",
-      type: "Part-time",
-      description: "Designing posters and managing social media content for UBA",
-      skills: ["Canva", "Social Media Marketing", "Content Creation", "Print Design"],
-      icon: <FaGlobe className="w-6 h-6" />,
-      category: "Design"
     },
     {
       title: "Manak mitra",
@@ -80,6 +85,17 @@ const Experience = () => {
       category: "Professional Organization"
     },
     {
+      title: "Designer",
+      company: "Unnat Bharat Abhiyan",
+      period: "Dec 2022 - Feb 2024",
+      location: "Chennai, Tamil Nadu, India",
+      type: "Part-time",
+      description: "Designing posters and managing social media content for UBA",
+      skills: ["Canva", "Social Media Marketing", "Content Creation", "Print Design"],
+      icon: <FaGlobe className="w-6 h-6" />,
+      category: "Design"
+    },
+    {
       title: "Webmaster",
       company: "IEEE",
       period: "Jan 2022 - Jun 2023",
@@ -100,17 +116,6 @@ const Experience = () => {
       category: "Leadership"
     },
     {
-      title: "Summer AI Intern",
-      company: "Vajra Global Consulting Services LLP",
-      period: "Jun 2024 - Aug 2024",
-      location: "Chennai, Tamil Nadu, India · On-site",
-      type: "Internship",
-      description: "Working on AI and machine learning projects",
-      skills: ["LLaMA", "Python", "RAG", "Streamlit"],
-      icon: <FaBrain className="w-6 h-6" />,
-      category: "AI/ML"
-    },
-    {
       title: "Student Intern",
       company: "Vajra Global Consulting Services LLP",
       period: "Jan 2022 - Nov 2023",
@@ -123,86 +128,127 @@ const Experience = () => {
     }
   ];
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray('.experience-card');
+      
+      cards.forEach((card, index) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom-=100",
+            toggleActions: "play none none reverse"
+          },
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          delay: index * 0.2
+        });
+      });
+    }, experienceRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold text-[#2C1810] mb-4">Experience</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+    <div ref={experienceRef} className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-primary-white to-primary-beige">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8">
+        <div className="text-center mb-10 sm:mb-12 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading1 text-primary-dark mb-3 sm:mb-4">
+            Experience
+          </h2>
+          <p className="text-base sm:text-lg md:text-xl text-primary-taupe max-w-2xl mx-auto px-4">
             A chronological journey through my professional experiences and roles.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-[#2C1810] opacity-20"></div>
-
-          <div className="space-y-12">
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'justify-end' : 'justify-start'
-                }`}
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#2C1810] rounded-full z-10"></div>
-
-                {/* Content card */}
-                <div className={`w-5/12 ${index % 2 === 0 ? 'mr-8' : 'ml-8'}`}>
-                  <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 bg-[#2C1810] bg-opacity-10 rounded-full text-[#2C1810]">
-                        {exp.icon}
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between mb-2">
-                          <h4 className="text-xl font-semibold text-[#2C1810]">{exp.title}</h4>
-                          <span className="px-3 py-1 bg-[#2C1810] bg-opacity-10 text-[#2C1810] rounded-full text-sm">
-                            {exp.category}
-                          </span>
-                        </div>
-                        <div className="space-y-2">
-                          <p className="text-gray-600">
-                            <span className="font-medium">Company:</span> {exp.company}
-                          </p>
-                          <p className="text-gray-600">
-                            <span className="font-medium">Period:</span> {exp.period}
-                          </p>
-                          {exp.location && (
-                            <p className="text-gray-600">
-                              <span className="font-medium">Location:</span> {exp.location}
-                            </p>
-                          )}
-                          <p className="text-gray-600">
-                            <span className="font-medium">Type:</span> {exp.type}
-                          </p>
-                        </div>
-                        <p className="mt-4 text-gray-600">{exp.description}</p>
-                        {exp.skills && (
-                          <div className="mt-4 flex flex-wrap gap-2">
-                            {exp.skills.map((skill, i) => (
-                              <span key={i} className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
+        {/* Desktop Timeline View */}
+        <div className="hidden md:block relative max-w-4xl mx-auto">
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-primary-burgundy"></div>
+          
+          {experiences.map((exp, index) => (
+            <div
+              key={index}
+              className={`experience-card relative mb-12 last:mb-0 ${
+                index % 2 === 0 ? 'md:pr-1/2 md:pl-8' : 'md:pl-1/2 md:pr-8'
+              }`}
+            >
+              <div className="bg-primary-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-primary-beige">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-primary-beige rounded-lg flex-shrink-0">
+                    {exp.logo ? (
+                      <img src={exp.logo} alt={`${exp.company} logo`} className="w-8 h-8 object-contain" />
+                    ) : (
+                      exp.icon
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-heading2 text-primary-dark mb-2">
+                      {exp.title}
+                    </h3>
+                    <div className="flex items-center gap-2 text-primary-taupe mb-2">
+                      <span className="font-medium">{exp.company}</span>
+                      <span className="text-primary-burgundy">•</span>
+                      <span>{exp.period}</span>
                     </div>
+                    {exp.location && (
+                      <p className="text-primary-taupe mb-2">{exp.location}</p>
+                    )}
+                    <p className="text-primary-taupe mb-2">{exp.description}</p>
+                    {exp.skills && (
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {exp.skills.map((skill, i) => (
+                          <span key={i} className="px-2 py-1 bg-primary-beige text-primary-taupe rounded-full text-sm">
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile Card View */}
+        <div className="md:hidden space-y-6">
+          {experiences.map((exp, index) => (
+            <div
+              key={index}
+              className="experience-card bg-primary-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-primary-beige"
+            >
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-primary-beige rounded-lg flex-shrink-0">
+                  {exp.logo ? (
+                    <img src={exp.logo} alt={`${exp.company} logo`} className="w-8 h-8 object-contain" />
+                  ) : (
+                    exp.icon
+                  )}
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-heading2 text-primary-dark mb-2">
+                    {exp.title}
+                  </h3>
+                  <div className="flex flex-col gap-1 text-primary-taupe mb-2">
+                    <span className="font-medium">{exp.company}</span>
+                    <span>{exp.period}</span>
+                    {exp.location && <span>{exp.location}</span>}
+                  </div>
+                  <p className="text-primary-taupe mb-2">{exp.description}</p>
+                  {exp.skills && (
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {exp.skills.map((skill, i) => (
+                        <span key={i} className="px-2 py-1 bg-primary-beige text-primary-taupe rounded-full text-sm">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
