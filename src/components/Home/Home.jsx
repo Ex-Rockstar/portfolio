@@ -71,12 +71,19 @@ const Home = ({ onAnimationComplete }) => {
   }, [showContent]);
 
   const scrollToAbout = () => {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      const yOffset = -80; // Offset to account for fixed header
-      const y = aboutSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
+    setTimeout(() => {
+      const aboutSection = document.getElementById('about');
+      if (aboutSection) {
+        const yOffset = -100;
+        const y = aboutSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({
+          top: y,
+          behavior: 'smooth'
+        });
+      } else {
+        console.log('About section not found');
+      }
+    }, 100);
   };
 
   return (

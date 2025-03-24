@@ -92,15 +92,17 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-primary-white py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <div id="about" className="min-h-screen bg-primary-white py-20 px-4 sm:px-6 md:px-8">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading1 text-primary-dark mb-8 sm:mb-12 text-center">
+          About Me
+        </h2>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-primary-dark mb-4">About Me</h2>
           <p className="text-primary-taupe max-w-2xl mx-auto">
             A passionate developer with expertise in AI, web development, and software engineering.
           </p>
