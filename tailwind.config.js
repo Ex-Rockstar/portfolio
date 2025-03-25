@@ -2,18 +2,18 @@
 export default {
   content: [
     './index.html',
-    './src/**/*.{js,ts,jsx,tsx}', // Ensure this includes all your JSX/TSX files
+    './src/**/*.{js,ts,jsx,tsx}', 
   ],
   theme: {
     extend: {
       colors: {
         primary: {
-          dark: '#322D29',    // Dark Brown/Black
-          burgundy: '#72383D', // Burgundy
-          taupe: '#AC9C8D',   // Warm Taupe
-          beige: '#D1C7BD',   // Light Beige
-          gray: '#D9D9D9',    // Light Gray
-          white: '#EFE9E1',   // Off White
+          navy: '#0A192F',     // Deep Navy Blue (Bolder & Confident)
+          crimson: '#8B0000',  // Bold Crimson
+          taupe: '#a67d44',    // Warm Taupe (Elegant & Classic)
+          beige: '#cdbcab',    // Light Beige (Soft & Balanced)
+          gray: '#899481',     // Light Gray
+          white: '#EFE9E1',    // Off White (Sophisticated)
         },
       },
       fontFamily: {

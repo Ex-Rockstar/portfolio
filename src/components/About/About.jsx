@@ -92,9 +92,9 @@ const About = () => {
   ];
 
   return (
-    <div id="about" className="min-h-screen bg-primary-white py-20 px-4 sm:px-6 md:px-8">
+    <div id="about" className="min-h-screen bg-[#EFE9E1] py-20 px-4 sm:px-6 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading1 text-primary-dark mb-8 sm:mb-12 text-center">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading1 text-[#11100F] mb-8 sm:mb-12 text-center">
           About Me
         </h2>
         <motion.div
@@ -103,7 +103,7 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-primary-taupe max-w-2xl mx-auto">
+          <p className="text-[#5D1C34] max-w-2xl mx-auto">
             A passionate developer with expertise in AI, web development, and software engineering.
           </p>
         </motion.div>
@@ -115,7 +115,7 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <h3 className="text-2xl font-semibold text-primary-dark mb-8">Skills</h3>
+          <h3 className="text-2xl font-semibold text-[#11100F] mb-8">Skills</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {Object.entries(skills).map(([key, category], index) => (
               <motion.div
@@ -123,27 +123,27 @@ const About = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-lg shadow-lg p-6 border border-primary-beige hover:shadow-xl transition-shadow duration-300"
+                className="bg-[#CDBCAB]/30 backdrop-blur-sm rounded-lg shadow-lg p-6 border border-[#899481]/20 hover:border-[#899481] hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 bg-primary-taupe bg-opacity-20 rounded-full text-primary-dark">
+                  <div className="p-3 bg-[#A67D44]/20 rounded-full text-[#5D1C34]">
                     {category.icon}
                   </div>
-                  <h4 className="text-xl font-semibold text-primary-dark">{category.title}</h4>
+                  <h4 className="text-xl font-semibold text-[#11100F]">{category.title}</h4>
                 </div>
                 <div className="space-y-4">
                   {category.skills.map((skill, i) => (
                     <div key={i}>
                       <div className="flex justify-between mb-1">
-                        <span className="text-primary-dark font-medium">{skill.name}</span>
-                        <span className="text-primary-taupe">{skill.level}%</span>
+                        <span className="text-[#11100F] font-medium">{skill.name}</span>
+                        <span className="text-[#5D1C34]">{skill.level}%</span>
                       </div>
-                      <div className="w-full bg-primary-white rounded-full h-2">
+                      <div className="w-full bg-[#EFE9E1] rounded-full h-2">
                         <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}
                           transition={{ duration: 1, delay: i * 0.1 }}
-                          className="h-2 rounded-full bg-primary-burgundy"
+                          className="h-2 rounded-full bg-[#5D1C34]"
                         />
                       </div>
                     </div>
@@ -161,7 +161,7 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <h3 className="text-2xl font-semibold text-primary-dark mb-8">Education</h3>
+          <h3 className="text-2xl font-semibold text-[#11100F] mb-8">Education</h3>
           <div className="space-y-8">
             {education.map((edu, index) => (
               <motion.div
@@ -169,43 +169,43 @@ const About = () => {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-lg shadow-lg p-6 border border-primary-beige hover:shadow-xl transition-shadow duration-300"
+                className="bg-[#CDBCAB]/30 backdrop-blur-sm rounded-lg shadow-lg p-6 border border-[#899481]/20 hover:border-[#899481] hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-primary-taupe bg-opacity-20 rounded-full text-primary-dark">
+                  <div className="p-3 bg-[#A67D44]/20 rounded-full text-[#5D1C34]">
                     {edu.icon}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="text-xl font-semibold text-primary-dark">{edu.degree}</h4>
+                      <h4 className="text-xl font-semibold text-[#11100F]">{edu.degree}</h4>
                       {edu.gpa && (
-                        <span className="px-3 py-1 bg-primary-taupe bg-opacity-20 text-primary-dark rounded-full text-sm">
+                        <span className="px-3 py-1 bg-[#A67D44]/20 text-[#5D1C34] rounded-full text-sm">
                           {edu.gpa}
                         </span>
                       )}
                     </div>
                     <div className="space-y-2">
-                      <p className="text-primary-taupe">
+                      <p className="text-[#5D1C34]">
                         <span className="font-medium">School:</span> {edu.school}
                       </p>
-                      <p className="text-primary-taupe">
+                      <p className="text-[#5D1C34]">
                         <span className="font-medium">Specialization:</span> {edu.specialization}
                       </p>
-                      <p className="text-primary-taupe">
+                      <p className="text-[#5D1C34]">
                         <span className="font-medium">Period:</span> {edu.period}
                       </p>
                       {edu.location && (
-                        <p className="text-primary-taupe">
+                        <p className="text-[#5D1C34]">
                           <span className="font-medium">Location:</span> {edu.location}
                         </p>
                       )}
                     </div>
                     {edu.skills && (
                       <div className="mt-4">
-                        <p className="text-primary-taupe font-medium mb-2">Key Skills:</p>
+                        <p className="text-[#5D1C34] font-medium mb-2">Key Skills:</p>
                         <div className="flex flex-wrap gap-2">
                           {edu.skills.map((skill, i) => (
-                            <span key={i} className="px-2 py-1 bg-primary-white text-primary-dark rounded-full text-sm">
+                            <span key={i} className="px-2 py-1 bg-[#A67D44]/20 text-[#5D1C34] rounded-full text-sm">
                               {skill}
                             </span>
                           ))}
@@ -227,20 +227,19 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="space-y-8"
           >
-            <div className="bg-white rounded-lg shadow-lg p-8 border border-primary-beige">
-              <h3 className="text-2xl font-semibold text-primary-dark mb-4">My Journey</h3>
-              <p className="text-primary-taupe leading-relaxed">
+            <div className="bg-[#CDBCAB]/30 backdrop-blur-sm rounded-lg shadow-lg p-8 border border-[#899481]/20 hover:border-[#899481] hover:shadow-xl transition-all duration-300">
+              <h3 className="text-2xl font-semibold text-[#11100F] mb-4">My Journey</h3>
+              <p className="text-[#5D1C34] leading-relaxed">
                 I'm a dedicated AI researcher and software engineer with a passion for developing innovative solutions
                 in healthcare and mental wellness. My journey in technology has been driven by a desire to create
                 meaningful impact through artificial intelligence.
               </p>
-              <p className="text-primary-taupe leading-relaxed mt-4">
+              <p className="text-[#5D1C34] leading-relaxed mt-4">
                 Currently pursuing my studies at Sri Sairam Engineering College, I've developed expertise in
                 machine learning, deep learning, and software development. My work focuses on creating AI-powered
                 solutions that can improve healthcare outcomes and enhance mental wellness.
               </p>
             </div>
-
           </motion.div>
 
           {/* Right Column - Interests and Education */}
@@ -250,8 +249,8 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="space-y-8"
           >
-            <div className="bg-white rounded-lg shadow-lg p-8 border border-primary-beige">
-              <h3 className="text-2xl font-semibold text-primary-dark mb-6">Interests & Focus Areas</h3>
+            <div className="bg-[#CDBCAB]/30 backdrop-blur-sm rounded-lg shadow-lg p-8 border border-[#899481]/20 hover:border-[#899481] hover:shadow-xl transition-all duration-300">
+              <h3 className="text-2xl font-semibold text-[#11100F] mb-6">Interests & Focus Areas</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {interests.map((interest, index) => (
                   <motion.div
@@ -259,21 +258,19 @@ const About = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="flex items-start space-x-4 p-4 rounded-lg bg-primary-white hover:bg-primary-beige transition-colors duration-300"
+                    className="flex items-start space-x-4 p-4 rounded-lg bg-[#CDBCAB]/20 hover:bg-[#CDBCAB]/40 transition-colors duration-300 border border-[#899481]/10 hover:border-[#899481]/30"
                   >
-                    <div className="text-primary-burgundy">
+                    <div className="text-[#5D1C34]">
                       {interest.icon}
                     </div>
                     <div>
-                      <h4 className="font-semibold text-primary-dark">{interest.title}</h4>
-                      <p className="text-primary-taupe text-sm">{interest.description}</p>
+                      <h4 className="font-semibold text-[#11100F]">{interest.title}</h4>
+                      <p className="text-[#5D1C34]/80 text-sm">{interest.description}</p>
                     </div>
                   </motion.div>
                 ))}
               </div>
             </div>
-
-           
           </motion.div>
         </div>
       </div>
