@@ -133,14 +133,7 @@ const Home = ({ onAnimationComplete }) => {
               >
                 <FaLinkedin className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
               </a>
-              <a 
-                href="https://twitter.com/yourusername" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-primary-taupe hover:text-primary-navy transition-colors duration-300 transform hover:scale-110"
-              >
-                <FaTwitter className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
-              </a>
+             
             </div>
             <button
               ref={buttonRef}
