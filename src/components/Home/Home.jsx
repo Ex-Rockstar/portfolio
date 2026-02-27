@@ -1,156 +1,181 @@
-import React, { useLayoutEffect, useRef, useEffect, useState } from "react";
-import gsap from "gsap";
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+
+const FloatingShape = ({ color, size, top, left, delay, duration, shape = "circle" }) => {
+  const isSquare = shape === "square";
+  const isTriangle = shape === "triangle";
+
+  return (
+    <motion.div
+      className={`absolute mix-blend-multiply opacity-60 pointer-events-none`}
+      style={{
+        backgroundColor: color,
+        width: size,
+        height: size,
+        top: top,
+        left: left,
+        borderRadius: isSquare ? '0px' : isTriangle ? '0px' : '50%',
+        clipPath: isTriangle ? 'polygon(50% 0%, 0% 100%, 100% 100%)' : 'none',
+        zIndex: 0,
+        boxShadow: isSquare ? '8px 8px 0px 0px rgba(26,26,26,1)' : 'none',
+        border: isSquare ? '4px solid #1A1A1A' : 'none',
+      }}
+      animate={{
+        y: [0, -30, 0],
+        x: [0, 20, 0],
+        rotate: isSquare || isTriangle ? [0, 90, 180, 270, 360] : 0,
+      }}
+      transition={{
+        duration: duration,
+        repeat: Infinity,
+        repeatType: "reverse",
+        ease: "easeInOut",
+        delay: delay,
+      }}
+    />
+  );
+};
 
 const Home = ({ onAnimationComplete }) => {
-  const [showContent, setShowContent] = useState(false);
   const [introComplete, setIntroComplete] = useState(false);
-  const comp = useRef(null);
-  const buttonRef = useRef(null);
-  const hasAnimated = useRef(false);
-  const mainContentRef = useRef(null);
 
-  useLayoutEffect(() => {
-    if (hasAnimated.current) return;
-    
-    const ctx = gsap.context(() => {
-      if (mainContentRef.current) {
-        gsap.set(mainContentRef.current, { opacity: 0 });
-      }
-
-      const t1 = gsap.timeline();
-
-      t1.from("#intro-slider", {
-        xPercent: -100,
-        duration: 1.3,
-        delay: 0.3,
-      })
-        .from(["#title-1", "#title-2", "#title-3", "#title-4"], {
-          opacity: 0,
-          y: "+=30",
-          stagger: 0.5,
-        })
-        .to(["#title-1", "#title-2", "#title-3", "#title-4"], {
-          opacity: 0,
-          y: "-=30",
-          delay: 0.3,
-          stagger: 0.5,
-        })
-        .to("#intro-slider", {
-          xPercent: -100,
-          duration: 1.3,
-          onComplete: () => {
-            setIntroComplete(true);
-          }
-        })
-        .to(mainContentRef.current, {
-          opacity: 1,
-          duration: 1,
-          onComplete: () => {
-            setShowContent(true);
-            hasAnimated.current = true;
-            if (onAnimationComplete) {
-              onAnimationComplete();
-            }
-          }
-        });
-    }, comp);
-    
-    return () => ctx.revert();
-  }, [onAnimationComplete]);
-
-  useEffect(() => {
-    if (showContent) {
-      gsap.from(buttonRef.current, {
-        opacity: 0,
-        y: 20,
-        duration: 1,
-      });
-    }
-  }, [showContent]);
+  const TitleWord = ({ text, delay }) => (
+    <motion.div
+      initial={{ y: 50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, delay, ease: "easeOut" }}
+      className="inline-block mr-4 font-heading font-black text-6xl sm:text-7xl md:text-9xl tracking-tighter uppercase text-primary-dark"
+      style={{ textShadow: '4px 4px 0px #FF2E93, 8px 8px 0px #1A1A1A' }}
+    >
+      {text}
+    </motion.div>
+  );
 
   const scrollToAbout = () => {
-    setTimeout(() => {
-      const aboutSection = document.getElementById('about');
-      if (aboutSection) {
-        const yOffset = -100;
-        const y = aboutSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({
-          top: y,
-          behavior: 'smooth'
-        });
-      } else {
-        console.log('About section not found');
-      }
-    }, 100);
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      const yOffset = -100;
+      const y = aboutSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
-    <>
-      <div className="relative min-h-screen" ref={comp}>
+    <div className="relative min-h-screen bg-primary-light overflow-hidden selection:bg-primary-yellow selection:text-primary-dark">
+      <AnimatePresence>
         {!introComplete && (
-          <div
-            id="intro-slider"
-            className="bg-gradient-to-r from-primary-navy to-primary-crimson text-primary-white h-screen p-4 sm:p-6 md:p-10 absolute top-0 left-0 font-heading2 z-10 w-full flex flex-col justify-center gap-4 sm:gap-6 md:gap-10 tracking-tight"
+          <motion.div
+            key="intro"
+            initial={{ y: 0 }}
+            animate={{ y: "-100%" }}
+            transition={{ duration: 1, delay: 2.5, ease: [0.76, 0, 0.24, 1] }}
+            onAnimationComplete={() => {
+              setIntroComplete(true);
+              if (onAnimationComplete) onAnimationComplete();
+            }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-primary-dark text-primary-light"
           >
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl" id="title-1">
-              AI Researcher.
-            </h1>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl" id="title-2">
-              Software Engineer.
-            </h1>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl" id="title-3">
-              GenAI Developer.
-            </h1>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl" id="title-4">
-              ML Enthusiast.
-            </h1>
-          </div>
-        )}
-        <div ref={mainContentRef} className="min-h-screen flex flex-col bg-primary-white justify-center items-center relative px-4 sm:px-6 md:px-8">
-          <div className="text-center w-full max-w-4xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading1 text-primary-navy mb-4">
-              Hey, I'm Ruthika
-            </h1>
-            <p className="text-lg sm:text-xl text-primary-taupe max-w-2xl mx-auto mb-8 px-4">
-              A passionate AI researcher and software engineer specializing in machine learning and generative AI.
-              Currently working on innovative solutions in healthcare and mental wellness.
-            </p>
-            <div className="flex justify-center space-x-6 mb-8">
-              <a 
-                href="https://github.com/Ex-Rockstar" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-primary-taupe hover:text-primary-navy transition-colors duration-300 transform hover:scale-110"
-              >
-                <FaGithub className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
-              </a>
-              <a 
-                href="https://linkedin.com/in/ruthi-shankari" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-primary-taupe hover:text-primary-navy transition-colors duration-300 transform hover:scale-110"
-              >
-                <FaLinkedin className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
-              </a>
-             
+            <div className="flex flex-col items-center gap-2 overflow-hidden">
+              {["AI RESEARCHER", "SOFTWARE ENGINEER", "GEN-AI DEV", "ML ENTHUSIAST"].map((text, i) => (
+                <motion.h1
+                  key={i}
+                  initial={{ y: 100, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.5, delay: i * 0.3 }}
+                  exit={{ y: -100, opacity: 0 }}
+                  className="text-4xl sm:text-6xl md:text-8xl font-heading font-black tracking-tighter"
+                  style={{ textShadow: `4px 4px 0px ${['#FF2E93', '#00E5FF', '#00FF66', '#FFD700'][i]}` }}
+                >
+                  {text}
+                </motion.h1>
+              ))}
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="min-h-screen flex flex-col justify-center relative px-4 sm:px-6 md:px-12 z-10 w-full max-w-7xl mx-auto items-start">
+
+        {/* Floating Background Elements */}
+        <FloatingShape color="#FFD700" size="300px" top="-5%" left="-10%" delay={0} duration={6} />
+        <FloatingShape color="#00E5FF" size="400px" top="40%" left="60%" delay={1} duration={8} shape="square" />
+        <FloatingShape color="#FF2E93" size="200px" top="70%" left="10%" delay={2} duration={5} />
+        <FloatingShape color="#00FF66" size="150px" top="20%" left="80%" delay={3} duration={7} shape="triangle" />
+
+        <div className="relative z-10 mt-20 md:mt-0 max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="inline-block bg-primary-yellow text-primary-dark font-bold px-4 py-1 border-2 border-primary-dark shadow-brutal-sm mb-6 -rotate-3 hover:rotate-3 transition-transform cursor-default"
+          >
+            Creative Mode Active 🚀
+          </motion.div>
+
+          <div className="flex flex-wrap mb-6 leading-none">
+            <TitleWord text="HEY," delay={1.0} />
+            <TitleWord text="I'M" delay={1.2} />
+            <br />
+            <TitleWord text="RUTHIKA" delay={1.4} />
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.6 }}
+            className="text-xl sm:text-2xl text-primary-dark font-medium max-w-2xl mb-10 leading-relaxed border-l-4 border-primary-pink pl-4 bg-primary-light/50 backdrop-blur-sm p-4"
+          >
+            A passionate <span className="text-primary-purple font-bold">AI researcher</span> and <span className="text-primary-orange font-bold">software engineer</span> specializing in machine learning and generative AI. Currently working on innovative solutions in healthcare and mental wellness.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.8 }}
+            className="flex flex-wrap items-center gap-6"
+          >
             <button
-              ref={buttonRef}
               onClick={scrollToAbout}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-navy to-primary-crimson text-primary-white rounded-lg text-lg sm:text-xl font-body hover:from-primary-crimson hover:to-primary-taupe transition-all duration-300 transform hover:-translate-y-1 shadow-md hover:shadow-xl"
+              className="px-8 py-4 bg-primary-green text-primary-dark font-heading font-bold text-xl uppercase tracking-wider border-4 border-primary-dark shadow-brutal hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-brutal-sm active:translate-x-[8px] active:translate-y-[8px] active:shadow-none transition-all"
             >
               Explore My Journey
             </button>
-          </div>
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:block">
-            <svg className="w-6 h-6 text-primary-navy" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </div>
+
+            <div className="flex gap-4">
+              {[
+                { icon: FaGithub, href: "https://github.com/Ex-Rockstar", color: "bg-primary-blue" },
+                { icon: FaLinkedin, href: "https://linkedin.com/in/ruthi-shankari", color: "bg-primary-yellow" }
+              ].map((social, i) => (
+                <a
+                  key={i}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-14 h-14 flex items-center justify-center ${social.color} border-4 border-primary-dark shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm active:translate-x-[8px] active:translate-y-[8px] active:shadow-none transition-all`}
+                >
+                  <social.icon className="w-6 h-6 text-primary-dark" />
+                </a>
+              ))}
+            </div>
+          </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.5, duration: 1 }}
+          className="absolute bottom-8 right-12 hidden md:block"
+        >
+          <div className="animate-spin-slow p-4 bg-primary-pink rounded-full border-4 border-primary-dark shadow-brutal flex items-center justify-center -rotate-12 border-dashed">
+            <span className="font-heading font-black text-2xl text-primary-light">↓ SCROLL ↓</span>
+          </div>
+        </motion.div>
       </div>
-    </>
+    </div>
   );
 };
 

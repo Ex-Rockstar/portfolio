@@ -8,18 +8,24 @@ export default {
     extend: {
       colors: {
         primary: {
-          navy: '#0A192F',     // Deep Navy Blue (Bolder & Confident)
-          crimson: '#8B0000',  // Bold Crimson
-          taupe: '#a67d44',    // Warm Taupe (Elegant & Classic)
-          beige: '#cdbcab',    // Light Beige (Soft & Balanced)
-          gray: '#899481',     // Light Gray
-          white: '#EFE9E1',    // Off White (Sophisticated)
+          dark: '#1A1A1A',     // Deep Black
+          light: '#FFF8E7',    // Warm Off-White
+          pink: '#FF2E93',     // Hot Pink
+          yellow: '#FFD700',   // Bright Yellow
+          blue: '#00E5FF',     // Neon Blue
+          green: '#00FF66',    // Neon Green
+          purple: '#B5179E',   // Deep Purple
+          orange: '#FF5722',   // Vibrant Orange
         },
       },
       fontFamily: {
-        body: ['merriweather-regular'],
-        heading1: ['raleway-light'],
-        heading2: ['raleway-800'],
+        body: ['"Space Grotesk"', 'sans-serif'],
+        heading: ['"Outfit"', 'sans-serif'],
+      },
+      boxShadow: {
+        'brutal': '8px 8px 0px 0px rgba(26,26,26,1)',
+        'brutal-sm': '4px 4px 0px 0px rgba(26,26,26,1)',
+        'brutal-lg': '12px 12px 0px 0px rgba(26,26,26,1)',
       },
     },
   },

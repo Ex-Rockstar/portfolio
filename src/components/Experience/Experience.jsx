@@ -1,13 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import { FaBriefcase, FaCode, FaLaptopCode, FaServer, FaMobileAlt, FaGlobe, FaBrain, FaGamepad, FaUsers, FaGraduationCap, FaFlag, FaRobot, FaDatabase, FaPalette, FaTools } from 'react-icons/fa';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import React from 'react';
+import { FaGraduationCap, FaCode, FaFlag, FaUsers, FaPalette, FaRobot } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const Experience = () => {
-  const experienceRef = useRef(null);
-
   const experiences = [
     {
       title: "Student Member",
@@ -17,7 +12,8 @@ const Experience = () => {
       type: "Full-time",
       description: "Active member of the prestigious IEEE honor society",
       icon: <FaGraduationCap className="w-6 h-6" />,
-      category: "Professional Organization"
+      category: "Professional Organization",
+      color: "bg-primary-blue"
     },
     {
       title: "Summer AI Intern",
@@ -28,7 +24,8 @@ const Experience = () => {
       description: "Working on AI and machine learning projects",
       skills: ["LLaMA", "Python", "RAG", "Streamlit"],
       icon: <FaRobot className="w-6 h-6" />,
-      category: "AI/ML"
+      category: "AI/ML",
+      color: "bg-primary-pink"
     },
     {
       title: "Web Developer",
@@ -39,7 +36,8 @@ const Experience = () => {
       description: "Leading web development initiatives and content management",
       skills: ["React.js", "JavaScript", "Web Development", "Leadership", "Media Management"],
       icon: <FaCode className="w-6 h-6" />,
-      category: "Web Development"
+      category: "Web Development",
+      color: "bg-primary-yellow"
     },
     {
       title: "Manak mitra",
@@ -50,7 +48,8 @@ const Experience = () => {
       description: "Contributing to standardization initiatives",
       skills: ["Problem Solving", "Microsoft Word"],
       icon: <FaFlag className="w-6 h-6" />,
-      category: "Standards"
+      category: "Standards",
+      color: "bg-primary-green"
     },
     {
       title: "Campus Ambassador - Influencer",
@@ -60,7 +59,8 @@ const Experience = () => {
       description: "Promoting innovation and entrepreneurship on campus",
       skills: ["Problem Solving", "Microsoft Word"],
       icon: <FaUsers className="w-6 h-6" />,
-      category: "Leadership"
+      category: "Leadership",
+      color: "bg-primary-orange"
     },
     {
       title: "Campus Ambassador",
@@ -71,7 +71,8 @@ const Experience = () => {
       description: "Spreading awareness about government policies and initiatives",
       skills: ["Public Speaking", "Community Engagement", "Management", "Leadership"],
       icon: <FaUsers className="w-6 h-6" />,
-      category: "Leadership"
+      category: "Leadership",
+      color: "bg-primary-purple"
     },
     {
       title: "Treasurer",
@@ -82,7 +83,8 @@ const Experience = () => {
       description: "Managing financial operations for IEEE chapter",
       skills: ["Problem Solving", "Microsoft Word", "Calendars"],
       icon: <FaGraduationCap className="w-6 h-6" />,
-      category: "Professional Organization"
+      category: "Professional Organization",
+      color: "bg-[#FFF8E7]"
     },
     {
       title: "Designer",
@@ -93,7 +95,8 @@ const Experience = () => {
       description: "Designing posters and managing social media content for UBA",
       skills: ["Canva", "Social Media Marketing", "Content Creation", "Print Design"],
       icon: <FaPalette className="w-6 h-6" />,
-      category: "Design"
+      category: "Design",
+      color: "bg-primary-pink"
     },
     {
       title: "Webmaster",
@@ -103,7 +106,8 @@ const Experience = () => {
       description: "Managing IEEE chapter website and digital presence",
       skills: ["WordPress", "Social Media Management", "JavaScript", "HTML"],
       icon: <FaCode className="w-6 h-6" />,
-      category: "Web Development"
+      category: "Web Development",
+      color: "bg-primary-blue"
     },
     {
       title: "Director",
@@ -113,7 +117,8 @@ const Experience = () => {
       description: "Founding member managing digital content and social media",
       skills: ["Social Media Marketing", "Content Creation", "Logo Design", "Public Speaking"],
       icon: <FaUsers className="w-6 h-6" />,
-      category: "Leadership"
+      category: "Leadership",
+      color: "bg-primary-yellow"
     },
     {
       title: "Student Intern",
@@ -124,117 +129,96 @@ const Experience = () => {
       description: "Full-stack development and web design",
       skills: ["Python", "Django", "Flutter", "Web Development", "SQL"],
       icon: <FaCode className="w-6 h-6" />,
-      category: "Web Development"
+      category: "Web Development",
+      color: "bg-primary-green"
     }
   ];
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray('.experience-card');
-      
-      cards.forEach((card, index) => {
-        gsap.from(card, {
-          scrollTrigger: {
-            trigger: card,
-            start: "top bottom-=50",
-            toggleActions: "play none none reverse",
-            fastScrollEnd: true,
-            anticipatePin: 1
-          },
-          opacity: 0,
-          y: 30,
-          duration: 0.5,
-          delay: index * 0.1,
-          ease: "power2.out"
-        });
-      });
-    }, experienceRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <div ref={experienceRef} className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-primary-white to-primary-beige">
-      <div className="container mx-auto px-4 sm:px-6 md:px-8">
-        <div className="text-center mb-10 sm:mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading1 text-primary-dark mb-3 sm:mb-4">
-            Experience
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-primary-taupe max-w-2xl mx-auto px-4">
-            A chronological journey through my professional experiences and roles.
-          </p>
-        </div>
+    <div className="py-20 bg-primary-yellow overflow-hidden relative border-t-8 border-primary-dark">
+      {/* Playful background grid */}
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none"
+        style={{ backgroundImage: 'radial-gradient(#1A1A1A 2px, transparent 2px)', backgroundSize: '30px 30px' }}>
+      </div>
 
-        {/* Desktop Timeline View */}
-        <div className="hidden md:block relative max-w-4xl mx-auto">
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-primary-burgundy"></div>
-          
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+          whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <div className="inline-block bg-primary-light border-4 border-primary-dark shadow-brutal px-8 py-4 rotate-2 hover:-rotate-1 transition-transform cursor-pointer">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-heading font-black text-primary-dark uppercase tracking-tighter">
+              Experience
+            </h2>
+          </div>
+          <p className="text-xl md:text-2xl text-primary-dark font-medium max-w-2xl mx-auto mt-8 bg-primary-pink border-4 border-primary-dark shadow-brutal-sm p-4 -rotate-1 font-body">
+            A chronological journey through my professional chaos and roles.
+          </p>
+        </motion.div>
+
+        <div className="max-w-4xl mx-auto">
           {experiences.map((exp, index) => (
-            <div
+            <motion.div
+              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 50 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, type: 'spring', bounce: 0.4 }}
               key={index}
-              className={`experience-card relative mb-12 last:mb-0 ${
-                index % 2 === 0 ? 'md:pr-1/2 md:pl-8' : 'md:pl-1/2 md:pr-8'
-              }`}
+              className={`relative mb-8 md:mb-12 flex flex-col md:flex-row gap-6 group`}
             >
-              <div className="bg-primary-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-primary-beige">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-primary-beige rounded-lg flex-shrink-0">
-                    {exp.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-heading2 text-primary-dark mb-2">
-                      {exp.title}
-                    </h3>
-                    <div className="flex items-center gap-2 text-primary-taupe mb-2">
-                      <span className="font-medium">{exp.company}</span>
-                      <span className="text-primary-burgundy">•</span>
-                      <span>{exp.period}</span>
-                    </div>
-                    {exp.location && (
-                      <p className="text-primary-taupe mb-2">{exp.location}</p>
-                    )}
-                    <p className="text-primary-taupe mb-2">{exp.description}</p>
-                    {exp.skills && (
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {exp.skills.map((skill, i) => (
-                          <span key={i} className="px-2 py-1 bg-primary-beige text-primary-taupe rounded-full text-sm">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+              {/* Timeline Connector Desktop - only show between items */}
+              {index !== experiences.length - 1 && (
+                <div className="hidden md:block absolute left-10 top-20 bottom-[-3rem] w-2 bg-primary-dark ml-[-1px] group-hover:bg-primary-pink transition-colors z-0"></div>
+              )}
+
+              {/* Icon / Marker */}
+              <div className="relative z-10 self-start md:self-auto">
+                <div className={`w-20 h-20 flex items-center justify-center ${exp.color} border-4 border-primary-dark shadow-brutal rounded-none transform rotate-${index % 2 === 0 ? '6' : '-6'} group-hover:rotate-0 group-hover:scale-110 transition-all duration-300`}>
+                  <div className="text-primary-dark scale-150">{exp.icon}</div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
 
-        {/* Mobile Card View */}
-        <div className="md:hidden space-y-6">
-          {experiences.map((exp, index) => (
-            <div
-              key={index}
-              className="experience-card bg-primary-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-primary-beige"
-            >
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-primary-beige rounded-lg flex-shrink-0">
-                  {exp.icon}
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-heading2 text-primary-dark mb-2">
-                    {exp.title}
-                  </h3>
-                  <div className="flex flex-col gap-1 text-primary-taupe mb-2">
-                    <span className="font-medium">{exp.company}</span>
-                    <span>{exp.period}</span>
-                    {exp.location && <span>{exp.location}</span>}
+              {/* Card Content */}
+              <div className="flex-1">
+                <div className={`bg-primary-light p-6 md:p-8 border-4 border-primary-dark shadow-brutal hover:shadow-brutal-sm transition-all duration-300 transform group-hover:translate-x-1 group-hover:translate-y-1 ${index % 2 === 0 ? '-rotate-1' : 'rotate-1'} hover:rotate-0`}>
+
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-4">
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-heading font-black text-primary-dark uppercase leading-tight mb-1">
+                        {exp.title}
+                      </h3>
+                      <h4 className="text-xl font-body font-bold text-primary-dark bg-primary-yellow inline-block px-2 border-2 border-primary-dark -rotate-1">
+                        {exp.company}
+                      </h4>
+                    </div>
+
+                    <div className="flex flex-col items-start md:items-end gap-2 shrink-0">
+                      <span className="font-body font-bold text-primary-light bg-primary-dark px-3 py-1 text-sm tracking-wide shadow-brutal-sm">
+                        {exp.period}
+                      </span>
+                      <span className="font-body font-bold text-primary-dark border-2 border-primary-dark px-2 py-0.5 text-xs bg-primary-light">
+                        {exp.type}
+                      </span>
+                    </div>
                   </div>
-                  <p className="text-primary-taupe mb-2">{exp.description}</p>
+
+                  <p className="text-primary-dark font-body font-medium text-lg leading-relaxed mb-4 pl-4 border-l-4 border-primary-pink bg-primary-light/50 py-2">
+                    {exp.description}
+                  </p>
+
+                  {exp.location && (
+                    <div className="text-primary-dark font-body font-bold text-sm mb-4 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-primary-dark block rounded-full"></span>
+                      {exp.location}
+                    </div>
+                  )}
+
                   {exp.skills && (
-                    <div className="flex flex-wrap gap-2 mt-2">
+                    <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t-4 border-primary-dark border-dashed">
                       {exp.skills.map((skill, i) => (
-                        <span key={i} className="px-2 py-1 bg-primary-beige text-primary-taupe rounded-full text-sm">
+                        <span key={i} className="px-3 py-1 bg-primary-light border-2 border-primary-dark text-primary-dark font-body font-bold text-sm hover:bg-primary-dark hover:text-primary-light transition-colors cursor-default">
                           {skill}
                         </span>
                       ))}
@@ -242,7 +226,7 @@ const Experience = () => {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
