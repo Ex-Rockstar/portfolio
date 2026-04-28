@@ -17,9 +17,9 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Create payload for Web3Forms
+      // Using Web3Forms as the user has an active dashboard for it
       const payload = {
-        access_key: "52b7c167-42c1-4d1a-bc8f-ebfb714beace", // You will need to replace this!
+        access_key: "52b7c167-42c1-4d1a-bc8f-ebfb714beace", 
         name: formData.name,
         email: formData.email,
         subject: formData.subject,
