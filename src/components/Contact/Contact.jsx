@@ -12,20 +12,45 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Original functionality 
-    console.log(formData);
+    try {
+      // Create payload for Web3Forms
+      const payload = {
+        access_key: "52b7c167-42c1-4d1a-bc8f-ebfb714beace", // You will need to replace this!
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      };
 
-    // Simulate network delay for UX
-    setTimeout(() => {
-      setSubmitStatus('success');
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        console.error("Web3Forms Error:", result);
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
+      setSubmitStatus('error');
+    } finally {
       setIsSubmitting(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setSubmitStatus(null), 3000);
-    }, 1000);
+      setTimeout(() => setSubmitStatus(null), 5000);
+    }
   };
 
   const handleChange = (e) => {
